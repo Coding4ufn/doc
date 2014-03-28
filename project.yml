@@ -1,0 +1,28 @@
+title: Intuition Lab
+author: Xavier Bruhiere
+keywords: finance, trading, quant
+name: intuition
+description: Automated quantitative trading kit, for hackers
+copyright: 2014 Xavier Bruhiere
+
+#TODO A script to add author informations at the end of the articles ?
+#FIXME disqus_shortname: werckerdevcenter
+#TODO freenode, rss subscription, google+, wercker build badge at the end of
+#layouts/layout.erb
+links:
+  domain: intuition.io
+  home: https://github.com/hackliff/intuition
+  blog: http://hivetech.github.io
+  about: www.google.com
+  #signup: https://app.wercker.com/users/new
+  signup: http://intuition.io
+
+contact:
+  disqus_shortname: quantrade
+  chat: https://gitter.im/hackliff/intuition
+  twitter: XavierBruhiere
+  support_email: xavier.bruhiere@gmail.com
+
+github:
+  user: hackliff
+  repo: intuition
