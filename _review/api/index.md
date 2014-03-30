@@ -5,32 +5,14 @@ sidebar_current: "api"
 API
 ===
 
-This sections describes the tools available to help you build modules for
-Intuition.  Everything is done to make writing modules easy, fun and efficient.
-So your feedback, advices and contributions are happily welcome.
+Here are some examples to get you started. To make your work available, just
+feed the [Intuition][3] configuration (like above) a path it can find in the
+environment variable `$PYTHONPATH`.
 
-Usage
------
+Everything is done to make writing modules easy, fun and efficient. So your
+feedback, advices and contributions are happily welcome
 
-Once provided to the configuration, those modules, or the ones you create, are
-dynamically loaded.
-
-Just drop in your configuration something like:
-
-```yaml
-modules:
-  manager: insights.managers.optimalfrontier.OptimalFrontier
-  algorithm: insights.algorithms.dummy.BuyAndHold
-  data: insights.sources.backtest.yahoo.YahooOHLC
-```
-
-Make sure the given path is registered in the `PYTHONPATH` environment
-variable.
-
-Examples
---------
-
-First, a classic buy and hold strategy, with a plugin which stores metrics in
+* First, a classic buy and hold strategy, with a plugin which stores metrics in
 [rethinkdb](www.rethinkdb.com):
 
 ```python
@@ -50,17 +32,15 @@ class BuyAndHold(TradingFactory):
     def event(self, data):
         signals = {}
 
-        if self.days == 2:
+        if self.day == 2:
             for ticker in data:
                 signals[ticker] = data[ticker].price
 
         return signals
 ```
 
----
-
-Here is the Fair manager example, which allocates the same weight in the
-portfolio to all of your assets:
+* Here is the Fair manager example, which allocates the same weight in the
+  portfolio to all of your assets:
 
 ```python
 from intuition.zipline.portfolio import PortfolioFactory
@@ -90,24 +70,21 @@ class Fair(PortfolioFactory):
         return allocations, expected_return, expected_risk
 ```
 
----
-
-Now a source for backtests taking advantage of the awesome [Quandl][2] project.
+* Now a source for backtests taking advantage of the awesome [Quandl][2] project.
 
 ```python
 from intuition.zipline.data_source import DataFactory
 from intuition.data.quandl import DataQuandl
 
-class QuandlSource(object):
+class QuandlSource(DataFactory):
     '''
     Fetchs data from quandl.com
     '''
-    def __init__(self, sids, properties):
-        pass
-
-    def get_data(self, sids, start, end):
-        return DataQuandl().fetch(
-            sids, start=start, end=end)
+    def get_data(self):
+        return DataQuandl().fetch(self.sids,
+                          start_date=self.start,
+                          end_date=self.end,
+                          returns='pandas')
 
     @property
     def mapping(self):

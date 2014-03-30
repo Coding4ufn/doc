@@ -5,14 +5,15 @@ sidebar_current: "api-algorithms"
 Algorithms
 ==========
 
+API
+---
+
 ```python
 class MyAlgo(TradingFactory):
   '''
-  This class detects "buy" and "sell" signals, and process transactions. You
-  can also use a portfolio manager to compute sophisticaed (or not) stocks
-  allocation.
+  Place for the trading strategy.
 
-  The parent class provides the following useful attributes :
+  The class provides the following useful attributes :
     - manager - Manager object specified on command line
     - portfolio - Portfolio informations
     - perf_tracker - Trading metrics
@@ -53,12 +54,10 @@ class MyAlgo(TradingFactory):
     signals = {'buy': {}, 'sell': {}}
 
     for ticker in data:
-
         if great_prospect():
             # Currently, if you want to use weight-based strategy allocation,
             # you must provide the current sid price
             signals['buy'][ticker] = data[ticker]
-
         if take_profit():
             signals['sell'][ticker] = data[ticker]
 

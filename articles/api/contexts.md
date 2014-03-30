@@ -4,42 +4,45 @@ sidebar_current: "api-contexts"
 
 # Contexts
 
-## API
-
 ```python
-# (This is work in progress)
-# A context provides at least this method signature
-def build_context(storage):
-    # The storage argument gives you informations to build the configuration
-    context = {'end': '17h', 'universe': 'nasdaq,10'}
-    strategy = {'algorithm': {'vwap': 15}, 'manager': {'sell': 0.3}}
-    return context, strategy
+from intuition.api.context import ContextFactory
+
+class FileContext(ContextFactory):
+
+    def initialize(self, storage):
+        '''
+        The storage dictionnary should contain everything you need to
+        initialize your Context.
+        Intuition parses :
+          `--context insights.FileContext://localhost/somewhere/config.json?key=value`
+        into :
+          storage = {
+              'uri': 'localhost',
+              'path': ['somewhere', 'config.json'],
+              'params': {'key': 'value'},
+            }
+        '''
+
+    def load(self):
+        '''
+        This function must return a configuration dictionnary for intuition of
+        that kind :
+
+        return {
+          'start': '2013/01/01',
+          'end': '2014/01/01',
+          'universe': 'forex',
+          'modules': {
+            'algorithm': 'insights.algorithms.signals.RSIWithM',
+            'manager': 'insights.managers.gmv.GlobalMinimumVariance',
+            'backtest': 'insights.sources.backtest.database.AugmentedRethinkdb'
+          },
+          'manager': {
+            'cash': 10000
+          }
+        }
+        '''
 ```
-
-* Then [Intuition][1] uses it with the following syntax:
-``--context {{ context_type }}::{{ context_storage_argument }}``
-
-* A minimal configuration looks like below. Every parameters wrote under
-*algorithm* are available in ``TradingAlgorithm.init()`` with the
-``properties`` dictionnary. An others under *manager* are accessible in the
-``parameters`` dictionnary, given in __init__() and optimize() methods.
-
-```yaml
-universe: cac40,10
-end: 17h
-frequency: 1min
-modules:
-  manager: insights.managers.optimalfrontier.OptimalFrontier
-  algorithm: insights.algorithms.gradient.StochasticGradientDescent
-  data: insights.sources.live.EquitiesLiveSource
-algorithm:
-  save: true
-  gradient_iterations: 5
-manager:
-  cash: 100000
-```
-
-[1]: https://github.com/hackliff/intuition
 
 ---
 ##### last modified on: March 19, 2014

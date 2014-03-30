@@ -5,19 +5,37 @@ sidebar_current: "api-data-sources"
 Data Sources
 ============
 
+
+API
+---
+
 ```python
-class MySource(object):
+from intuition.zipline.data_source import DataFactory
+
+log = logbook.Logger('intuition.source.backtest|live.name')
+
+class MySource(DataFactory):
   '''
   Data sources yield events, processed by the algorithms, from a data descriptor
   providing dates, trading universe (i.e. tickers, market, random, ...) and
   custom parameters.
+
+  The class provides the following attributes :
+    - self.sids - list of strings representing simulated internal sids
+                  It can be an explicit list of symbols, or a universe like nyse,20
+                  (that will pick up 20 random symbols from nyse exchange)
+    - self.index - pandas.tseries.index.DatetimeIndex
+    - self.start - self.index[0]
+    - self.end - self.index[-1]
   '''
 
-  def __init__(self, sids, properties):
+  def initialize(data_descriptor, **kwargs):
     '''
-    TODO : describe the properties object
+    Like with the other modules, ran once before trading. The data_descriptor
+    holds dates index, the market universe as given by '--universe' and
+    additional parameters the user wrote int the configuration under the 'data'
+    key.
     '''
-    pass
 
   def get_data(self):
     '''
@@ -35,8 +53,6 @@ class MySource(object):
     -----| open | high | close
     14/03| ____ | ____ | _____
     15/03|      |      |
-
-    TODO : live get_data() documentation
     '''
     return pd.DataFrame()
 

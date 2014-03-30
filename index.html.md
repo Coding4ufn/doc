@@ -1,9 +1,19 @@
-# Intuition Lab
+# Intuition Documentation
 
+> Automated quantitative trading kit, for hackers
 
-Welcome to the Intuition Lab!
+Welcome ! This is work in progress but I hope you will find here everything you
+need to build smart trading strategies with Intuition.
 
-If you are new to Intuition, head up to [getting started guide](/articles/gettingstarted/).
+* If you want to run your own installation, head up to the [getting started guide](/articles/getting-started/).
+* Learn how to write [algorithms, portfolio managers, data sources and contexts](/articles/api).
+* Explore [existing ones with Insights](/articles/insights).
+* Want to master the command line, intuition.io or its API ? [Everything is here](/articles/intuition).
+
+You can also follow the development on
+[Github](https://github.com/hackliff/intuition) and this [trello
+board](https://trello.com/b/WvJDlynt/intuition). Finally, come chat about the
+project on [Gitter](https://gitter.im/hackliff/intuition) !
 
 -------
 
@@ -23,10 +33,10 @@ If you are new to Intuition, head up to [getting started guide](/articles/gettin
 
         <!-- info -->
         <li>
-            <a href="http://unide.co" target="_blank">
-                <i class="icon-company"></i> <em>unide</em>
+            <a href="http://intuition.io" target="_blank">
+                <i class="icon-company"></i> <em>intuition.io</em>
             </a>
-            <a href="http://twitter.com/XavierBruhiere" target="_blank">
+            <a href="https://twitter.com/XavierBruhiere" target="_blank">
                 <i class="icon-twitter"></i>
                 <em>XavierBruhiere</em>
             </a>

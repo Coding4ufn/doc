@@ -1,0 +1,80 @@
+@import "compass/css3/box-shadow";
+@import "mixins/section-offset";
+
+
+.page-content__nav {
+	min-height: 100%;
+	background: $section-title-bg;
+	padding: 0;
+
+	.row {
+		margin: 0;
+	}
+	.row .columns {
+		padding: 0;
+	}
+
+	.section-container {
+		border: none;
+		margin-bottom: 0;
+
+		section {
+			border-color: darken(#fff,70%);
+
+			.content {
+				margin-left: .2*$column-gutter;
+			}
+
+			.title a {
+				font-size: .9*$base-font-size;
+			  font-weight: 600;
+			  text-transform: uppercase;
+			}
+
+			.title a:hover {
+				//color: black;
+				color: $emphasis-color;
+				background: darken($section-title-bg, 5%);
+			}
+
+		}
+
+		.section__offset-1 {@include section-offset(-3px, 1%)}
+		.section__offset-2 {@include section-offset(-6px, 2%)}
+		.section__offset-3 {@include section-offset(-9px, 3%)}
+		.section__offset-4 {@include section-offset(-12px, 4%)}
+
+
+		section :first-child {
+			box-shadow: none;
+		}
+
+		.section__divider {
+			border-width: 0;
+			margin-bottom: $column-gutter;
+		}
+	}
+
+	.side-nav li {
+		font-weight: 200;
+	}
+
+	.side-nav li a:hover{
+		color: $side-nav-link-color-active;
+	}
+
+	.side-nav li.active a {
+		font-weight: 600;
+	}
+
+
+	@media #{$small} {
+		height: 100%;
+		.row .columns {width: gridCalc(12, 12);}
+	}
+
+	@media #{$medium} {
+		.row .columns {width: gridCalc(9, 12);}
+		.section-container section .title a {font-size: $base-font-size;}
+	}
+}
