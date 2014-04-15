@@ -1,19 +1,25 @@
 # Intuition Documentation
 
-> Automated quantitative trading kit, for hackers
+> Quantitative trading kit, for hackers
 
 Welcome ! This is work in progress but I hope you will find here everything you
-need to build smart trading strategies with Intuition.
+need to build smart trading strategies with Intuition. If not, shoot me an
+email at xavier.bruhiere@gmail.com or/and please considere [contributing to
+this documentation](https://github.com/intuition-io/doc) !
+
+Let's get started :
 
 * If you want to run your own installation, head up to the [getting started guide](/articles/getting-started/).
 * Learn how to write [algorithms, portfolio managers, data sources and contexts](/articles/api).
 * Explore [existing ones with Insights](/articles/insights).
 * Want to master the command line, intuition.io or its API ? [Everything is here](/articles/intuition).
 
+If you have the marvelous plan to be a contributor, [make a detour here](/articles/contributors.html).
+
 You can also follow the development on
-[Github](https://github.com/hackliff/intuition) and this [trello
+[Github](https://github.com/intuition-io) and this [trello
 board](https://trello.com/b/WvJDlynt/intuition). Finally, come chat about the
-project on [Gitter](https://gitter.im/hackliff/intuition) !
+project on [Gitter](https://gitter.im/intuition-io) !
 
 -------
 
@@ -47,5 +53,5 @@ project on [Gitter](https://gitter.im/hackliff/intuition) !
 
 
 -------
-##### Mars 19, 2014
+##### April 1, 2014
 -------

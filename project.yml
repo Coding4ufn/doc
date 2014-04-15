@@ -10,18 +10,19 @@ copyright: 2014 Xavier Bruhiere
 #TODO freenode, rss subscription, google+, wercker build badge at the end of
 #layouts/layout.erb
 links:
-  domain: intuition.io
+  domain: doc.intuition.io
   home: https://github.com/hackliff/intuition
   blog: http://hivetech.github.io
   about: www.google.com
   #signup: https://app.wercker.com/users/new
   signup: http://intuition.io
   # TODO: This is wercker build
-  wercker_build: fe9267629e430d21dcdeb9baf2deebea
+  #wercker_build: fe9267629e430d21dcdeb9baf2deebea
+  wercker_build: f39a4be40502a31b3dcb94875c787b56
 
 contact:
   disqus_shortname: quantrade
-  chat: https://gitter.im/hackliff/intuition
+  chat: https://gitter.im/intuition-io
   twitter: XavierBruhiere
   support_email: xavier.bruhiere@gmail.com
   google_plus: 102532039826084442989

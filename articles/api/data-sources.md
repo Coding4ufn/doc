@@ -2,8 +2,10 @@
 sidebar_current: "api-data-sources"
 ---
 
-Data Sources
-============
+# Data Sources
+
+
+## Implementation
 
 ```python
 class MySource(object):
@@ -15,14 +17,17 @@ class MySource(object):
 
   def __init__(self, sids, properties):
     '''
-    TODO : describe the properties object
+    - `sids` are a list of securities we need data for.
+
+    - `properties` holds user configuration loaded at startup time. Use it to
+      pass any parameters you would need for initialization.
     '''
     pass
 
   def get_data(self):
     '''
-    Returns a pandas.DataFrame or pandas.Panel used as trading events.
-    DataFactory can process the following schemes
+    - Returns a pandas.DataFrame or pandas.Panel used as trading events.
+      DataFactory can process the following schemes
 
           | goog | aapl              | open | high | volume
     -------------------   or   ----------------------------
@@ -36,15 +41,24 @@ class MySource(object):
     14/03| ____ | ____ | _____
     15/03|      |      |
 
-    TODO : live get_data() documentation
+
+    - Live data sources  should return a snapshot of data (i.e. at the current,
+      frozen time.) Somethink like this (random) dataframe:
+
+         | usd/gbp | eur/usd
+    -------------------------
+    rate |  0.658  |  1.658
+    bid  |  0.659  |  1.358
+    ask  |  0.653  |  1.023
+
     '''
-    return pd.DataFrame()
+    pass
 
   @property
   def mapping(self):
     '''
     Sanitize your data input with correct fields and filters. You need at least
-    to expose the following fields with their related types.
+    to expose the following fields.
     '''
     return {
         'dt': (lambda x: x, 'dt'),
@@ -52,6 +66,14 @@ class MySource(object):
         'price': (float, 'price'),
         'volume': (int, 'volume'),
     }
+```
+
+
+## Usage
+
+Let's create a minimal implementation:
+
+```python
 ```
 
 ---

@@ -1,16 +1,22 @@
 ---
-sidebar_current: "gettingstarted"
+sidebar_current: "kickoff"
 ---
 
 # Getting started
 
 ## Installation
 
-We're going to install the cutting edge release from source
+We're going to install the stable release from source. Check the `develop
+branch` for the bleeding edge version.
+
+Alternatively, you can use [docker](https://www.docker.io) and be up and
+running quicker : [instructions here](/articles/getting-started/docker.html).
 
 ```console
 $ (sudo) apt-get install -y git-core python-dev g++ make gfortran
-$ git clone --depth 1 --branch develop https://github.com/hackliff/intuition.git
+$ git clone --depth 1 https://github.com/hackliff/intuition.git
+$ # It's safer to install these packages first
+$ pip install --use-mirrors cython numpy
 $ cd intuition && (sudo) python setup.py install
 ```
 
@@ -26,7 +32,7 @@ Intuition wires 4 primitives to build up the system : A data source generates
 events, processed by the algorithm, that can optionnaly use a portfolio manager
 to compute assets allocation. They are configured through a Context, while
 third party services use environment variables (take a look in
-config/local.env).
+`config/local.env`).
 
 This might seem a lot of work but fortunately, I and contributors have
 [already coded a bunch](https://github.com/hackliff/insights).
@@ -34,13 +40,14 @@ This might seem a lot of work but fortunately, I and contributors have
 You can [learn more here](/articles/insights) about these building blocks
 but for now we're gonna be lazy and just use them as is.
 
-First we need to install Insights, the project hosting the contributed modules.
+First, we need to install Insights, the project hosting contributed modules.
 
 ```console
-$ (sudo) apt-get install -y libssl-dev
+$ (sudo) apt-get install -y libssl-dev libreadline-dev
 $ git clone --depth 1 --branch develop https://github.com/hackliff/insights.git
 $ cd insights && (sudo) python setup.py install
 ```
+[Check out there](/articles/insights) to install powerful extra features.
 
 Now let's get serious and run our first backtest.
 
@@ -61,7 +68,7 @@ end: 2013-11-10
 modules:
   # This one triggers buy and sell signals randomly
   algorithm: insights.algorithms.dummy.Random
-  # This manager simply allocate a constant amount for each opportunity it receives
+  # This manager simply allocate a constant number of stocks
   manager: insights.managers.linear.Constant
   # The data will be fetched from Yahoo finance
   backtest: insights.sources.backtest.yahoo.YahooPrices
@@ -74,7 +81,7 @@ manager:
 
 Then shoot Intuition, loading our configuration file thanks to the
 `FileContext` module. The `--context` flag takes an argument that follows url
-format, and more specifically: `<module>://<address>/<path/to/config>`.
+format, and more specifically: `<module>://<address>/<path/to/config>?<params=values>`.
 
 ```shell
 $ export LANG=fr_FR.UTF-8  # Not necessarily set in environments like containers

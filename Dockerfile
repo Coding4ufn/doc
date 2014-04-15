@@ -1,8 +1,7 @@
 # Unide landing page dockerfile
 # docker run -d --name docs -p 4567 \
-#   -e NEWRELIC_API_KEY="" \
 #   -e GOOGLE_ANALYTICS_ID="" \
-#   hivetech/intuition-docs
+#   hivetech/intuition-doc
 FROM phusion/passenger-ruby20
 MAINTAINER Xavier Bruhiere, <xavier.bruhiere@gmail.com>
 

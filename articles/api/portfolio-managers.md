@@ -2,12 +2,9 @@
 sidebar_current: "api-portfolio-managers"
 ---
 
-Portfolio Managers
-==================
+# Portfolio Managers
 
-
-API
----
+## API
 
 ```python
 from portfolio import PortfolioFactory
@@ -66,6 +63,25 @@ class MyManager(PortfolioFactory):
             e_risk: float
                 Expected risk
         '''
+```
+
+## Usage
+
+Here is a minimal implementation: It buys a constant amount of every
+buy signals, and ignores sell ones.
+
+```python
+from intuition.api.portfolio import PortfolioFactory
+
+class TestPortfolio(PortfolioFactory):
+    ''' Returns minimal portfolio for demonstration '''
+
+    def initialize(self, properties):
+          self.constant = properties.get('constant', 100)
+
+    def optimize(self, date, to_buy, to_sell, parameters):
+        allocation = {sid: self.constant for sid in to_buy}
+        return allocation, 0, 1
 ```
 
 ---
