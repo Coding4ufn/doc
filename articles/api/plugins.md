@@ -5,7 +5,7 @@ sidebar_current: "api-plugins"
 Plugins
 =======
 
-Plugins are just useful code snippets for adding features in a modular way.
+Plugins are useful code snippets for adding features in a modular way.
 
 
 Middlewares
@@ -13,8 +13,8 @@ Middlewares
 
 Middlewares are special plugins. They expose a function which arguments are
 intuition.api.TradingFactory attributes. Once this function registered at
-initialization, *Intuition* will call it after each trading event (In the
-future, one will be able to specify more precisely when).
+algorithm initialization, *intuition* will call it after each trading event (In
+the future, one will be able to specify more precisely when).
 
 For example, the following code will print after each frame the current
 portfolio.

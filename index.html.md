@@ -9,7 +9,7 @@ this documentation](https://github.com/intuition-io/doc) !
 
 Let's get started :
 
-* If you want to run your own installation, head up to the [getting started guide](/articles/getting-started/).
+* If you want to run your own installation, head up to the [getting started guide](/articles/kickoff/).
 * Learn how to write [algorithms, portfolio managers, data sources and contexts](/articles/api).
 * Explore [existing ones with Insights](/articles/insights).
 * Want to master the command line, intuition.io or its API ? [Everything is here](/articles/intuition).

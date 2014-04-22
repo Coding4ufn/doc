@@ -59,11 +59,11 @@ symbols = ['su.pa', 'gle.pa']
 qdl = DataQuandl(quandl_key='ebzvrzvzvz')
 # Alternately for authentification, you can:
 #   - store the API key into the env as QUANDL_API_KEY
-#   - use 'authtoken' keyword with the `fetch` call
+#   - use 'authtoken' keyword with the <fetch> call
 
 # Get OHLCV for our symbols (and most of the time 'adjusted_close' as well)
 data = qdl.fetch(symbols, start='2002/01/01', end='2012/01/01')
-# Apart from `start` and `end`, all of the official parameters are supported.
+# Apart from <start> and <end>, all of the official parameters are supported.
 # Check the python package : https://github.com/quandl/Python
 
 data['su.pa'].head()

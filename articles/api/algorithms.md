@@ -12,7 +12,7 @@ configurations and a working implementation only needs 2 methods :
 * `event(self, data)` called for each event with the current related data.
 
 The algorithm doesn't care if you're in backtest or live mode, it works exactly
-the same.
+the same (indeed we want a simulated past event to be considered as a real time event).
 
 Note that `intuition` algorithms are fully compatible with ones from
 [zipline](https://github.com/quantopian/zipline).
@@ -21,7 +21,7 @@ Note that `intuition` algorithms are fully compatible with ones from
 
 Your implementation needs to inherit from the TradingFactory abstract class.
 It does the hard work, like keeping track of your portfolio and its
-performances, and lets you focus on the algo.
+performances, and lets you focus on the algo logic.
 
 ```python
 from intuition.api.algorithm import TradingFactory
@@ -37,8 +37,8 @@ class MyAlgo(TradingFactory):
     - portfolio - Portfolio informations
     - perf_tracker - Trading metrics
     - datetime - Current datetime
-    - days - Day counter
-    - logger
+    - elapsed_time - Timestamp elapsed from start time
+    - logger - Logbook logger
   '''
 ```
 
@@ -86,6 +86,10 @@ frequency you decided.
     If you can detect trading opportunities, this is where you place orders or
     fill the signals dictionnary like so {'buy': {sid: data[sid]}, 'sell': {}}.
     The portfolio manager will use it to compute the allocation.
+
+    Note that the values you provide in the dictionnary is up to you. The
+    example above remains a recommendation though, as you must be careful to
+    stay compatible with portfolio managers.
     '''
     signals = {'buy': {}, 'sell': {}}
 
@@ -138,7 +142,7 @@ class FakeAlgorithm(TradingFactory):
         self.custom_amount = properties.get('custom_amount', 100)
 
     def warm(self, data):
-        print 'Nothing to do here'
+        self.logger.debug(data)
 
     def event(self, data):
         for sid in data:
@@ -161,7 +165,7 @@ market = Market()
 market.parse_universe_description('stocks:paris:cac40,5')
 data_source = HybridDataFactory(
     universe=market,
-    index=,
+    index=dates,
     backtest=YahooPrices
 )
 ```
@@ -175,6 +179,13 @@ results = algo.run(data_source)
 
 Learn more about the `results` returned and how you can manipulate it using
 `analyzers` in [this section](/articles/api/analyzers).
+
+Optionaly, you can identify your backtests using the `identity` keyword. This
+is useful to store under a readable name your results in a database for example.
+
+```python
+algo = FakeAlgorithm(identity='ChuckNorris')
+```
 
 
 ## Simulation Environment

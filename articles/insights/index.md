@@ -14,7 +14,7 @@ sidebar_current: "insights"
 > Plug-and-play building blocks for modern quants
 
 Quantitative algorithms, portfolio managers data sources, contexts and
-middlewares for [Intuition][1], contributed by the community.
+plugins for [Intuition][1], contributed by the community.
 
 ## Installation
 

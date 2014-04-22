@@ -79,7 +79,7 @@ manager:
   cash: 10000
 ```
 
-Then shoot Intuition, loading our configuration file thanks to the
+Then shoot *intuition*, loading our configuration file thanks to the
 `FileContext` module. The `--context` flag takes an argument that follows url
 format, and more specifically: `<module>://<address>/<path/to/config>?<params=values>`.
 
@@ -95,9 +95,9 @@ $ intuition \
 
 ## Going further
 
-By now you should be ready to use Intuition. Next steps ?
+By now you should be ready to use *intuition*. Next steps ?
 
-* Learn how you can [make the most out of Intuiton](/articles/intuition)
+* Learn more [how to use intuition from the command line](/articles/intuition)
 * Discover [available modules](/articles/insights)
 * Read [how to craft your owns](/articles/api)
 
